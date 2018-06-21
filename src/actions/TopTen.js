@@ -14,3 +14,11 @@ export let loadTopTenAction=()=>{
         });
     }
 }
+
+export let cleanTopicAction=()=>{
+    return async dispatch=>{
+        dispatch({
+            type:types.POST_LOADING
+        });
+    }
+}

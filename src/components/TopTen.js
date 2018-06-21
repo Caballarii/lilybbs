@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-import {View,Text,ScrollView,TouchableOpacity} from 'react-native';
-import {List,ListItem,Header} from 'react-native-elements';
+import {View,Text,ScrollView,TouchableOpacity,FlatList} from 'react-native';
+import {List,ListItem} from 'react-native-elements';
 
 import {connect} from 'react-redux';
 import {loadTopTenAction} from '../actions/TopTen';
@@ -11,45 +11,53 @@ class TopTen extends Component{
         this.props.dispatch(loadTopTenAction());
     }
 
+    toPost=(url)=>{
+        const { navigate } = this.props.navigation;
+        navigate('Post',{url:url});
+    }
+
+    renderRow=(item)=>{
+        const { navigate } = this.props.navigation;
+        return (
+            <View style={{flexDirection:"row"}}>
+                <View style={{width:5,paddingTop:5,paddingBottom:5}}>
+                    <View style={{backgroundColor:"blue",flex:1}}>
+                    </View>    
+                </View>
+                <View style={{paddingLeft:10,paddingRight:10,paddingBottom:10,flex:1}}>
+                    <TouchableOpacity onPress={this.toPost.bind(this,item.item.url)}>
+                        <View style={{flexDirection:"row",justifyContent:"space-between"}}>
+                            <View style={{flex:1,height:50,justifyContent:"center"}}>
+                                <Text style={{fontWeight:"bold",fontSize:16}}>{item.item.title}</Text>
+                            </View>
+                            <View style={{width:70,justifyContent:"center"}}>  
+                                <Text style={{fontSize:14,textAlign:"right"}}>人气：{item.item.count}</Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection:"row",justifyContent:"space-between"}}> 
+                            <Text numberOfLines={2} style={{fontSize:14,textAlign:"left"}}>{item.item.author}</Text>  
+                            <Text style={{fontSize:14}}>版面：{item.item.board}</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </View>           
+        );
+    }
+
     render(){
-        console.log(this.props.data);
-        const navigate=this.props.navigation.navigate;
+        const {navigate}=this.props.navigation;
         return (
             <View style={{flex:1}}>
-                <Header
-                    centerComponent={{ text: '全站十大', style: { color: '#fff',fontSize:24 } }}
-                    outerContainerStyles={{borderBottomWidth:0}}
+                <FlatList
+                    data={this.props.data}
+                    keyExtractor={(item, index) => index+""}
+                    refreshing={this.props.loading}
+                    onRefresh={(info)=>{
+                        this.props.dispatch(loadTopTenAction());
+                    }}
+                    renderItem={this.renderRow}
+                    ItemSeparatorComponent={()=><View style={{height:1,backgroundColor:'#e5e5e5'}}/>}
                 />
-                    <ScrollView>
-                    <List containerStyle={{marginTop: 0,paddingTop:0}}>
-                    {
-                        this.props.data.map((info,i)=>{
-                            return (
-                            <ListItem
-                                key={info.title}
-                                title={
-                                    <TouchableOpacity onPress={() => navigate('Post',{url:info.url})}>
-                                        <View style={{flexDirection:"row",justifyContent:"space-between"}}>
-                                            <View style={{flex:1,height:50,justifyContent:"center"}}>
-                                                <Text style={{fontWeight:"bold",fontSize:20}}>{info.title}</Text>
-                                            </View>
-                                            <View style={{justifyContent:"center"}}>  
-                                                <Text style={{fontSize:20,textAlign:"right"}}>人气：{info.count}</Text>
-                                            </View>
-                                        </View>
-                                        <View style={{flexDirection:"row",justifyContent:"space-between"}}> 
-                                            <Text numberOfLines={2} style={{fontSize:16,textAlign:"left"}}>{info.author}</Text>  
-                                            <Text style={{fontSize:16}}>版面：{info.board}</Text>
-                                        </View>
-                                    </TouchableOpacity>
-                                }
-                                titleNumberOfLines={2}
-                                hideChevron={true}
-                                />);
-                        })
-                    }
-                    </List>
-                    </ScrollView>
             </View>
         );
     }

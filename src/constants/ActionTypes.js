@@ -1,5 +1,3 @@
-export const TEST_LOADED='TEST_LOADED';
-
 export const TOPTEN_LOADING='TOPTEN_LOADING';
 export const TOPTEN_LOADED='TOPTEN_LOADED';
 
