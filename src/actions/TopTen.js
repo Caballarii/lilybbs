@@ -8,17 +8,26 @@ export let loadTopTenAction=()=>{
             type:types.TOPTEN_LOADING
         });
         let result=await FetchUtil('bbstop10');
+
+        let data=parseTopTen(result);
+        let storage=global.storage;
+        data=await Promise.all(data.map(async info=>{
+            let isRead=false;
+            try{
+                await storage.load({
+                    key:'post',
+                    id:info.url.replace('_','-')
+                });
+                isRead=true;
+            }catch(e){
+                isRead=false;
+            }
+            info.isRead=isRead;
+            return info;
+        }));
         dispatch({
             type:types.TOPTEN_LOADED,
-            data:parseTopTen(result)
-        });
-    }
-}
-
-export let cleanTopicAction=()=>{
-    return async dispatch=>{
-        dispatch({
-            type:types.POST_LOADING
+            data:data
         });
     }
 }

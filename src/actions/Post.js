@@ -9,6 +9,16 @@ export let loadPostAction=(url)=>{
             type:types.POST_LOADING
         });
         let result=await FetchUtil(url);
+
+        let data=parsePost(result);
+        let storage=global.storage;
+
+        storage.save({
+            key:'post',
+            id:url.replace('_','-'),
+            data:data
+        })
+
         dispatch({
             type:types.POST_LOADED,
             data:parsePost(result)

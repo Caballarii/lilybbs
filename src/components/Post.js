@@ -6,6 +6,8 @@ import FixedImage from './common/FixedImage';
 import {loadPostAction} from '../actions/Post';
 import {connect} from 'react-redux';
 
+import emoji from '../utils/Emoji';
+
 class Post extends Component{
     componentDidMount(){
         this.props.dispatch(loadPostAction(this.props.navigation.state.params.url));
@@ -28,19 +30,13 @@ class Post extends Component{
                             return <Text style={info.color?{color:info.color}:{}} key={index}>{info.text}</Text>
                         }
                         else if(info.image){
-                            // return <Image
-                            //     key={index}
-                            //     style={{width:width-20,height:400}}
-                            //     source={{uri: info.image}}
-                            //     resizeMode="contain"
-                            // />
                             return <FixedImage
                                 key={index+info.image}
                                 uri={info.image}
                             />
                         }
                         else if(info.emoji){
-                            return <Image key={index+'emoji'} style={{width:20,height:20}} source={{uri:'Images/2.png'}}/>
+                            return <Image key={index+'emoji'} style={{width:20,height:20}} source={emoji.get(info.emoji)}/>
                         }
                         else{
                             return (

@@ -30,7 +30,7 @@ export let parsePost=(html)=>{
         let content=$(this).text();
 
         if(i===0){
-            let title=content.match(/标[\s]+题:([^发信人]+)/)[1];
+            let title=content.match(/标[\s]+题:([^(发信站)]+)/)[1];
             result.title=trim(title);
 
             let board=content.match(/信区: ([a-zA-Z_]+)/)[1];
@@ -46,6 +46,7 @@ export let parsePost=(html)=>{
         let text=content.match(/南京大学小百合站 [^\)]+\)([\s\S]+)(?=\-\-[\s]+)/)[1];
         
         //console.log(reduceReturn(text[1]));
+        console.log(text);
         text=reduceReturn(text);
         //console.log(text);
         node.text=parseText(text);

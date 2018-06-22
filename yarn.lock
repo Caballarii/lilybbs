@@ -5935,6 +5935,10 @@ react-native-scripts@1.14.0:
     rimraf "^2.6.1"
     xdl "48.1.4"
 
+react-native-storage@^0.2.2:
+  version "0.2.2"
+  resolved "http://registry.npm.taobao.org/react-native-storage/download/react-native-storage-0.2.2.tgz#4449197f122b2da0650e3704e1f050260ed58d9f"
+
 react-native-svg-web@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/react-native-svg-web/download/react-native-svg-web-1.0.1.tgz#16e1784077b6e5b6c7ebd9c3829e6684211cba99"
