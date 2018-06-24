@@ -25,6 +25,10 @@ export let parsePost=(html)=>{
     let result={};
     result.nodes=[];
 
+    if(html.indexOf('</script>错误! 错误的文件名!')!=-1){
+        return null;
+    }
+
     $("textarea").each(function(i,e){
         let node={};
         let content=$(this).text();
@@ -45,8 +49,6 @@ export let parsePost=(html)=>{
 
         let text=content.match(/南京大学小百合站 [^\)]+\)([\s\S]+)(?=\-\-[\s]+)/)[1];
         
-        //console.log(reduceReturn(text[1]));
-        console.log(text);
         text=reduceReturn(text);
         //console.log(text);
         node.text=parseText(text);
@@ -58,6 +60,7 @@ export let parsePost=(html)=>{
 }
 
 let parseText=(text)=>{
+
     let urlReg=new RegExp("http[s]?://[^\\s,，。？]+");
     let colorReg=new RegExp("\\[1;3[0-7]m[^\\[]+\\[m");
     let emojiReg=new RegExp("\\[[:|;][^\\]]+\\]");

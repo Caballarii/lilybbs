@@ -25,7 +25,7 @@ class Post extends Component{
                     <Text>{item.item.date}</Text>
                 </View>
                 <View>
-                    <View>{item.item.text.map((info,index)=>{
+                    <View style={{flexDirection:"row",flexWrap:"wrap"}}>{item.item.text.map((info,index)=>{
                         if(info.text){
                             return <Text style={info.color?{color:info.color}:{}} key={index}>{info.text}</Text>
                         }
@@ -60,7 +60,7 @@ class Post extends Component{
             <View style={{flex:1}}>
             {this.props.loading?
                 <Icon type="loading"/>:
-            
+                this.props.data?
                 <FlatList
                 style={{backgroundColor:"white",paddingLeft:10,paddingRight:10}}
                 data={this.props.data.nodes}
@@ -79,7 +79,12 @@ class Post extends Component{
                         <View style={{height:2,backgroundColor:'#e5e5e5'}}/>
                     </View>}
                 ItemSeparatorComponent={()=><View style={{height:2,backgroundColor:'#e5e5e5'}}/>}
-                />
+                />:
+                <View>
+                    <Text>
+                        帖子不见了
+                    </Text>
+                </View>
             }
             </View>
         );
