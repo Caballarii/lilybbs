@@ -32,9 +32,8 @@ export let parsePost=(html)=>{
     $("textarea").each(function(i,e){
         let node={};
         let content=$(this).text();
-
         if(i===0){
-            let title=content.match(/标[\s]+题:([^(发信站)]+)/)[1];
+            let title=content.match(/标[\s]+题:([^\n]+)/)[1];
             result.title=trim(title);
 
             let board=content.match(/信区: ([a-zA-Z_]+)/)[1];
@@ -51,12 +50,42 @@ export let parsePost=(html)=>{
         
         text=reduceReturn(text);
         //console.log(text);
-        node.text=parseText(text);
+
+        let mixedText=dividePicAndText(text);
+        //console.log(mixedText);
+
+        //node.text=parseText(text);
+        node.text=mixedText;
         //node.body=trim(item.text());
         result.nodes.push(node);
     });
 
     return result;
+}
+
+let dividePicAndText=(text)=>{
+    let picReg=new RegExp("http[s]?://[^\\s,，。？]+.(jpg|png|jpeg)(?![a-zA-Z0-9])");
+    
+    let result=[];
+    let picIndex=text.search(picReg);
+    if(picIndex==-1){
+        return [{"text":parseText(text)}];
+    }else{
+        let pic=picReg.exec(text)[0];
+        let resultArr=[];
+        let index=text.indexOf(pic);
+        let length=pic.length;
+
+        if(index!=0){
+            resultArr.push({"text":parseText(text.substring(0,index))});
+        }
+        resultArr.push({"image":pic});
+        if(index+length+1<text.length){
+            resultArr=[...resultArr,...dividePicAndText(text.substring(index+length))];
+        }
+
+        return resultArr;
+    }
 }
 
 let parseText=(text)=>{
@@ -107,11 +136,11 @@ let parseText=(text)=>{
         if(index!=0){
             resultArr=[...parseText(text.substring(0,index))];
         }
-        if(url.toLowerCase().endsWith(".jpg")||url.toLowerCase().endsWith(".png")||url.toLowerCase().endsWith(".jpeg")){
-            resultArr.push({"image":url});
-        }else{
+        // if(url.toLowerCase().endsWith(".jpg")||url.toLowerCase().endsWith(".png")||url.toLowerCase().endsWith(".jpeg")){
+        //     resultArr.push({"image":url});
+        // }else{
             resultArr.push({"url":url});
-        }
+        //}
         if(index+1+length<text.length){
             resultArr=[...resultArr,...parseText(text.substring(index+length))];
         }

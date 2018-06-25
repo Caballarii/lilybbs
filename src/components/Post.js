@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {View,Text,FlatList,Image,TouchableOpacity} from 'react-native';
-import {Icon} from 'react-native-elements';
+import {Icon,Divider} from 'react-native-elements';
 import FixedImage from './common/FixedImage';
 
 import {loadPostAction} from '../actions/Post';
@@ -25,7 +25,7 @@ class Post extends Component{
                     <Text>{item.item.date}</Text>
                 </View>
                 <View>
-                    <View style={{flexDirection:"row",flexWrap:"wrap"}}>{item.item.text.map((info,index)=>{
+                    {/* <Text>{item.item.text.map((info,index)=>{
                         if(info.text){
                             return <Text style={info.color?{color:info.color}:{}} key={index}>{info.text}</Text>
                         }
@@ -45,14 +45,41 @@ class Post extends Component{
                             </TouchableOpacity>
                             );
                         }
-                    })}</View>  
+                    })}</Text>   */}
+                    {item.item.text.map((info,index)=>{
+                        if(info.text){
+                            return (<Text key={index}>
+                                {info.text.map((info1,index1)=>{
+                                    if(info1.text){
+                                        return <Text style={info1.color?{color:info1.color}:{}} key={index1}>{info1.text}</Text>;
+                                    }
+                                    else if(info1.emoji){
+                                        return <Image key={index1+'emoji'} style={{width:20,height:20}} source={emoji.get(info1.emoji)}/>
+                                    }
+                                    else{
+                                        return (
+                                        <TouchableOpacity key={index1} onPress={()=>{}}>
+                                                <Text style={{color:"blue"}}>{info1.url}</Text>
+                                        </TouchableOpacity>
+                                        );
+                                    }
+                                })}
+                            </Text>);
+                        }
+                        else{
+                            return <FixedImage
+                                key={index+info.image}
+                                uri={info.image}
+                            />;
+                        }
+                    })}
                 </View>
             </View>           
         ); 
     }
 
     render(){
-        console.log(this.props.data);
+        //console.log(this.props.data);
         const { params } = this.props.navigation.state;
 
         return (
@@ -78,7 +105,7 @@ class Post extends Component{
                         </View>
                         <View style={{height:2,backgroundColor:'#e5e5e5'}}/>
                     </View>}
-                ItemSeparatorComponent={()=><View style={{height:2,backgroundColor:'#e5e5e5'}}/>}
+                ItemSeparatorComponent={()=><Divider style={{ backgroundColor: '#e5e5e5' }} />}
                 />:
                 <View>
                     <Text>

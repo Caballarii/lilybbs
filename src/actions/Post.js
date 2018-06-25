@@ -3,7 +3,7 @@ import {FetchUtil} from '../utils/FetchUtil';
 import {parsePost} from '../utils/HtmlParser';
 
 export let loadPostAction=(url)=>{
-    //url='vd98636/bbscon?board=test&file=M.1505203250.A&num=1006';
+    //url='vd149/bbstcon?board=Pictures&file=M.1529647763.A';
     return async dispatch=>{
         dispatch({
             type:types.POST_LOADING
@@ -21,7 +21,7 @@ export let loadPostAction=(url)=>{
 
         dispatch({
             type:types.POST_LOADED,
-            data:parsePost(result)
+            data:data
         });
     }
 }
