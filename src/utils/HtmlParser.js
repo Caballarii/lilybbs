@@ -29,6 +29,11 @@ export let parsePost=(html)=>{
         return null;
     }
 
+    let count=html.match(/本主题共有 ([0-9]+) 篇文章/)[1];
+    result.count=count;
+    result.pageIndex=0;
+    result.pageNum=Math.ceil(count/30);
+
     $("textarea").each(function(i,e){
         let node={};
         let content=$(this).text();

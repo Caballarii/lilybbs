@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,FlatList,Image,TouchableOpacity} from 'react-native';
+import {View,Text,FlatList,Image,TouchableOpacity,ScrollView,Dimensions} from 'react-native';
 import {Icon,Divider} from 'react-native-elements';
 import FixedImage from './common/FixedImage';
 
@@ -8,8 +8,11 @@ import {connect} from 'react-redux';
 
 import emoji from '../utils/Emoji';
 
+let tabWidth = Dimensions.get('window').width;
+
 class Post extends Component{
-    componentDidMount(){
+
+    componentDidMount(){        
         this.props.dispatch(loadPostAction(this.props.navigation.state.params.url));
     }
 
@@ -25,27 +28,6 @@ class Post extends Component{
                     <Text>{item.item.date}</Text>
                 </View>
                 <View>
-                    {/* <Text>{item.item.text.map((info,index)=>{
-                        if(info.text){
-                            return <Text style={info.color?{color:info.color}:{}} key={index}>{info.text}</Text>
-                        }
-                        else if(info.image){
-                            return <FixedImage
-                                key={index+info.image}
-                                uri={info.image}
-                            />
-                        }
-                        else if(info.emoji){
-                            return <Image key={index+'emoji'} style={{width:20,height:20}} source={emoji.get(info.emoji)}/>
-                        }
-                        else{
-                            return (
-                            <TouchableOpacity key={index} onPress={()=>{}}>
-                                    <Text style={{color:"blue"}}>{info.url}</Text>
-                            </TouchableOpacity>
-                            );
-                        }
-                    })}</Text>   */}
                     {item.item.text.map((info,index)=>{
                         if(info.text){
                             return (<Text key={index}>
@@ -81,33 +63,48 @@ class Post extends Component{
     render(){
         //console.log(this.props.data);
         const { params } = this.props.navigation.state;
-
         return (
             
             <View style={{flex:1}}>
             {this.props.loading?
                 <Icon type="loading"/>:
                 this.props.data?
-                <FlatList
-                style={{backgroundColor:"white",paddingLeft:10,paddingRight:10}}
-                data={this.props.data.nodes}
-                keyExtractor={(item, index) => index+""}
-                refreshing={this.props.loading}
-                renderItem={this.renderRow}
-                ListHeaderComponent={()=><View>
-                        <View style={{height:24,paddingLeft:10,paddingRight:10,backgroundColor:"blue",alignSelf:"flex-start"}}>
-                            <Text style={{fontSize:18,lineHeight:24,color:"white"}}>
-                            {this.props.data.board}
-                            </Text>
+                
+                <ScrollView style={{flex:1}} horizontal={true} showsHorizontalScrollIndicator={true} pagingEnabled={true}>
+                    <View style={{flexDirection: 'row',alignSelf:"stretch"}}>
+                        <View style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'center',width:tabWidth}}>
+                            <FlatList
+                                style={{backgroundColor:"white",paddingLeft:10,paddingRight:10}}
+                                data={this.props.data.nodes}
+                                keyExtractor={(item, index) => index+""}
+                                refreshing={this.props.loading}
+                                renderItem={this.renderRow}
+                                ListHeaderComponent={()=><View>
+                                        <View style={{height:24,paddingLeft:10,paddingRight:10,backgroundColor:"blue",alignSelf:"flex-start"}}>
+                                            <Text style={{fontSize:18,lineHeight:24,color:"white"}}>
+                                            {this.props.data.board}
+                                            </Text>
+                                        </View>
+                                        <View style={{marginTop:20,marginBottom:20}}>
+                                            <Text style={{fontSize:20,fontWeight:"bold"}}>{this.props.data.title}</Text>
+                                        </View>
+                                        <View style={{height:2,backgroundColor:'#e5e5e5'}}/>
+                                    </View>}
+                                ItemSeparatorComponent={()=><Divider style={{ backgroundColor: '#e5e5e5' }} />}
+                                />
                         </View>
-                        <View style={{marginTop:20,marginBottom:20}}>
-                            <Text style={{fontSize:20,fontWeight:"bold"}}>{this.props.data.title}</Text>
-                        </View>
-                        <View style={{height:2,backgroundColor:'#e5e5e5'}}/>
-                    </View>}
-                ItemSeparatorComponent={()=><Divider style={{ backgroundColor: '#e5e5e5' }} />}
-                />:
-                <View>
+                        {Array.apply(null, Array(this.props.data.pageNum)).map((info,index)=>{                            
+                            return (
+                                <View key={index} style={{flexDirection: 'row',alignItems: 'center',justifyContent: 'center',width:tabWidth}}>
+                                    <Text>分页2</Text>
+                                </View>
+                            );
+                        })
+                            
+                        }
+                    </View>
+                </ScrollView>
+                :<View>
                     <Text>
                         帖子不见了
                     </Text>
