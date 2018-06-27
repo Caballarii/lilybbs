@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import {View,Text,Dimensions,ScrollView} from 'react-native';
 let tabWidth = Dimensions.get('window').width;
 
-
 class Browse extends Component{    
 
     onScrollBeginDrag=(event)=>{

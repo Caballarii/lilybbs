@@ -27,7 +27,7 @@ let postReducer=(state=initialState,action)=>{
             }
         case types.POST_MORE_LOADED:
             let pageIndex=action.pageIndex;
-            if(pageIndex*30>=state.data.nodes.length){
+            if(pageIndex*30+1>=state.data.nodes.length){
                 state.data.nodes=[...state.data.nodes,...action.data];
             }
             return {

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text} from 'react-native';
+import {View,Text,WebView} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {createBottomTabNavigator,createStackNavigator} from 'react-navigation';
 
@@ -110,10 +110,23 @@ Post.navigationOptions=({navigation})=>{
   };
 }
 
+class OuterWeb extends Component{
+  render(){
+    return (
+      <WebView
+        source={{uri: this.props.navigation.state.params.uri}}
+      />
+    );
+  } 
+}
+
 const App=createStackNavigator({
     Home,
-    Post
-})
+    Post,
+    OuterWeb
+});
+
+
 
 
 export default App;

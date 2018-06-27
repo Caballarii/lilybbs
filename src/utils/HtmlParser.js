@@ -141,11 +141,7 @@ let parseText=(text)=>{
         if(index!=0){
             resultArr=[...parseText(text.substring(0,index))];
         }
-        // if(url.toLowerCase().endsWith(".jpg")||url.toLowerCase().endsWith(".png")||url.toLowerCase().endsWith(".jpeg")){
-        //     resultArr.push({"image":url});
-        // }else{
-            resultArr.push({"url":url});
-        //}
+        resultArr.push({"url":url});
         if(index+1+length<text.length){
             resultArr=[...resultArr,...parseText(text.substring(index+length))];
         }
