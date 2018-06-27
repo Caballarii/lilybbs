@@ -8,6 +8,7 @@ import Browse from '../components/Browse';
 import Personal from '../components/Personal';
 import Settings from '../components/Settings';
 import Post from '../components/Post';
+import BoardList from '../components/BoardList';
 
 const Home = createBottomTabNavigator(
     {
@@ -120,10 +121,17 @@ class OuterWeb extends Component{
   } 
 }
 
+BoardList.navigationOptions=({navigation})=>{
+  return {
+    headerTitle:'版面列表'
+  }
+}
+
 const App=createStackNavigator({
     Home,
     Post,
-    OuterWeb
+    OuterWeb,
+    BoardList
 });
 
 
