@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import {View,Text,ScrollView,TouchableOpacity,FlatList} from 'react-native';
-import {List,ListItem} from 'react-native-elements';
 
 import {connect} from 'react-redux';
 import {loadTopTenAction} from '../actions/TopTen';

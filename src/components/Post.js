@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {View,Text,FlatList,Image,TouchableOpacity,ScrollView,Dimensions} from 'react-native';
-import {Icon,Divider} from 'react-native-elements';
+import {Divider} from 'react-native-elements';
 import FixedImage from './common/FixedImage';
 
 import {loadPostAction,loadMorePostAction} from '../actions/Post';
