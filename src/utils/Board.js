@@ -497,4 +497,11 @@ insertBoard('Volunteer','青年志愿者协会');
 insertBoard('xinhongji','新鸿基社');
 insertBoard('YangTaiChi','杨式太极拳协会');
 
+boards.forEach(element=>{
+    element.data.sort((a,b)=>{
+        return a.name.toUpperCase()>b.name.toUpperCase();
+    });
+    
+})
+
 export default boards;

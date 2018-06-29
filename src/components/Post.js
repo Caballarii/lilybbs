@@ -75,7 +75,6 @@ class Post extends Component{
     }
 
     render(){
-        //console.log(this.props.data);
         const { params } = this.props.navigation.state;
         return (
             

@@ -47,7 +47,6 @@ class TopTen extends Component{
     }
 
     render(){
-        //console.log(this.props.data);
         const {navigate}=this.props.navigation;
         return (
             <View style={{flex:1}}>

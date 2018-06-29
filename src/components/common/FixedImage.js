@@ -22,6 +22,8 @@ export default class FixedImage extends Component{
                     width:width-20
                 });
             }
+        },(err)=>{
+            
         });
     }
 
