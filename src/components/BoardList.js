@@ -15,14 +15,6 @@ class BoardList extends Component{
         SV.scrollTo({y:height});
     }
 
-    componentWillMount(){
-        console.log(new Date());
-    }
-
-    componentDidMount(){
-        console.log(new Date());
-    }
-
     render(){
         return (
             <View>
