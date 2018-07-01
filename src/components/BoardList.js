@@ -15,6 +15,11 @@ class BoardList extends Component{
         SV.scrollTo({y:height});
     }
 
+    toBoard=(name)=>{
+        const { navigate } = this.props.navigation;
+        navigate('Board',{boardName:name});
+    }
+
     render(){
         return (
             <View>
@@ -33,9 +38,13 @@ class BoardList extends Component{
                                     </View>
                                     {
                                         info.data.map((info1,index1)=>{
-                                            return (<View key={index1} style={{height:50,paddingLeft:20,justifyContent:"center",backgroundColor:"white",borderBottomColor:"rgb(233,233,239)",borderBottomWidth:1}}>
-                                                <Text style={{fontSize:20}}>{info1.name+"("+info1.desc+")"}</Text>
-                                            </View>);
+                                            return (
+                                                <TouchableOpacity key={index1} onPress={this.toBoard.bind(this,info1.name)}>
+                                                    <View style={{height:50,paddingLeft:20,justifyContent:"center",backgroundColor:"white",borderBottomColor:"rgb(233,233,239)",borderBottomWidth:1}}>
+                                                        <Text style={{fontSize:20}}>{info1.name+"("+info1.desc+")"}</Text>
+                                                    </View>
+                                                </TouchableOpacity>
+                                            );
                                         })
                                     }
                                 </View>

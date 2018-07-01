@@ -32,7 +32,7 @@ export let parsePost=(html)=>{
     let count=html.match(/本主题共有 ([0-9]+) 篇文章/)[1];
     result.count=count;
     result.pageIndex=0;
-    result.pageNum=Math.ceil(count/30);
+    result.pageNum=count==0?1:Math.ceil(count/30);
 
     $("textarea").each(function(i,e){
         let node={};
@@ -201,6 +201,29 @@ let parseText=(text)=>{
         }
         return resultArr;
     }
+}
+
+export let parseBoard=(html)=>{
+    let $=Cheerio.load(html);
+    let result=[];
+    $("tr").each(function(i, e) {
+        let node={};
+        let item=$(this);
+        if(/^\d+$/.test(trim(item.children("td").eq(0).html()))){
+            node.no=trim(item.children("td").eq(0).text());
+            node.author=trim(item.children("td").eq(2).text());
+            node.time=trim(item.children("td").eq(3).text());
+            node.url=item.find("td").eq(4).children("a").eq(0).attr("href");
+            node.title=trim(item.find("td").eq(4).text()).substring(2);
+            node.popular=trim(item.children("td").eq(5).text());
+
+            result.push(node);
+        }
+    });
+    result.sort((a,b)=>{
+        return a.no<b.no;
+    })
+    return result;
 }
 
 let trim=(x)=> {

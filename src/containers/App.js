@@ -9,6 +9,7 @@ import Personal from '../components/Personal';
 import Settings from '../components/Settings';
 import Post from '../components/Post';
 import BoardList from '../components/BoardList';
+import Board from '../components/Board';
 
 const Home = createBottomTabNavigator(
     {
@@ -127,11 +128,18 @@ BoardList.navigationOptions=({navigation})=>{
   }
 }
 
+Board.navigationOptions=({navigation})=>{
+  return {
+    headerTitle:navigation.state.params.boardName
+  }
+}
+
 const App=createStackNavigator({
     Home,
     Post,
     OuterWeb,
-    BoardList
+    BoardList,
+    Board
 });
 
 
