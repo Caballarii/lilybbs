@@ -1,14 +1,14 @@
 import React,{Component} from 'react';
-import {View,Text,FlatList,TouchableOpacity} from 'react-native';
+import {View,Text,FlatList,TouchableOpacity,ActivityIndicator} from 'react-native';
 import {connect} from 'react-redux';
 
-import {loadBoardAction} from '../actions/Board';
+import {loadBoardAction,loadBoardMoreAction} from '../actions/Board';
 
 class Board extends Component{
 
     componentDidMount(){
         let boardName=this.props.navigation.state.params.boardName;
-        this.props.dispatch(loadBoardAction("bbstdoc?board="+boardName));
+        this.props.dispatch(loadBoardAction("bbstdoc?board="+boardName,boardName));
     }
 
     toPost=(item)=>{
@@ -17,6 +17,15 @@ class Board extends Component{
         const { navigate } = this.props.navigation;
 
         navigate('Post',{url:url});
+    }
+
+    toLoadMore=()=>{
+        if(this.props.loading){
+            return ;
+        }
+        let boardName=this.props.navigation.state.params.boardName;
+        let lastIndex=this.props.data[this.props.data.length-1].no;
+        this.props.dispatch(loadBoardMoreAction("bbstdoc?board="+boardName+"&start="+(lastIndex-22),lastIndex-22));
     }
 
     renderRow=(item)=>{
@@ -54,7 +63,14 @@ class Board extends Component{
                     keyExtractor={(item, index) => index+""}
                     refreshing={this.props.loading}
                     onRefresh={(info)=>{
-                        this.props.dispatch(loadBoardAction("bbstdoc?board="+this.props.navigation.state.params.boardName));
+                        this.props.dispatch(loadBoardAction("bbstdoc?board="+this.props.navigation.state.params.boardName,this.props.navigation.state.params.boardName));
+                    }}
+                    onEndReachedThreshold={0.1}
+                    onEndReached={(info)=>{
+                        this.toLoadMore();
+                    }}
+                    ListFooterComponent={()=>{
+                        return <View style={{height:30}}><ActivityIndicator/></View>
                     }}
                     renderItem={this.renderRow}
                     ItemSeparatorComponent={()=><View style={{height:1,backgroundColor:'#e5e5e5'}}/>}
