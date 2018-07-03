@@ -24,9 +24,9 @@ let boardReducer=(state=initialState,action)=>{
             else{
                 let nodes=action.data;
                 let firstIndex=state.data[0].no;
-                nodes.forEach(element=>{
+                nodes.forEach((element,index)=>{
                     if(element.no>firstIndex){
-                        state.data.push(element);
+                        state.data.splice(index,0,element);
                     }
                 });
             }

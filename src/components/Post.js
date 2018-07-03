@@ -35,7 +35,7 @@ class Post extends Component{
                     <Text style={{fontWeight:"bold"}}>{item.item.author}</Text>
                     <Text style={{fontWeight:"bold"}}>{item.index+pageIndex*30+(pageIndex!=0)}</Text>
                 </View>
-                <View style={{marginBottom:10}}>
+                <View style={{marginBottom:16}}>
                     <Text>{item.item.date}</Text>
                 </View>
                 <View>
