@@ -326,14 +326,13 @@ let trim = (x) => {
 
 let reduceReturn = (x) => {
     
-    //let result= x.replace(/[\n|\r]+/g, '\r\n');
-    let result=trim(x);
+    let result=trim(x.replace(/[\n|\r]+/g, '\n'));
 
-    let strArr=result.split('\r\n');
+    let strArr=result.split('\n');
     strArr=strArr.map(info=>{
         let length=getLength(info);
         if((length<76||length>84)){
-            info+='\r\n';
+            info+='\n';
         }
         return info;
     });
