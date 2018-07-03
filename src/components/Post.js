@@ -116,7 +116,7 @@ class Post extends Component{
                         }
                     </View>
                 </ScrollView>
-                :<View>
+                :this.props.loading?null:<View>
                     <Text>
                         帖子不见了
                     </Text>
