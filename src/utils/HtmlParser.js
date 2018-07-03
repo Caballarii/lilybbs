@@ -326,7 +326,7 @@ let trim = (x) => {
 
 let reduceReturn = (x) => {
     
-    let result=trim(x.replace(/[\n|\r]+/g, '\n'));
+    let result=x.replace(/^[\n|\r]+|[\n\r]+$/g, '').replace(/[\n|\r]+/g, '\n');
 
     let strArr=result.split('\n');
     strArr=strArr.map(info=>{

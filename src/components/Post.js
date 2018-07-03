@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {View,Text,FlatList,Image,TouchableOpacity,ScrollView,Dimensions} from 'react-native';
 import {Divider} from 'react-native-elements';
 import FixedImage from './common/FixedImage';
+import CommonText from './common/CommonText';
 
 import {loadPostAction,loadMorePostAction} from '../actions/Post';
 import {connect} from 'react-redux';
@@ -32,19 +33,19 @@ class Post extends Component{
         return (
             <View style={{marginTop:10,marginBottom:10}}>
                 <View style={{flexDirection:"row",justifyContent:"space-between",marginBottom:10}}>
-                    <Text style={{fontWeight:"bold"}}>{item.item.author}</Text>
-                    <Text style={{fontWeight:"bold"}}>{item.index+pageIndex*30+(pageIndex!=0)}</Text>
+                    <CommonText style={{fontWeight:"bold"}}>{item.item.author}</CommonText>
+                    <CommonText style={{fontWeight:"bold"}}>{item.index+pageIndex*30+(pageIndex!=0)}</CommonText>
                 </View>
                 <View style={{marginBottom:16}}>
-                    <Text>{item.item.date}</Text>
+                    <CommonText>{item.item.date}</CommonText>
                 </View>
                 <View>
                     {item.item.text.map((info,index)=>{
                         if(info.text){
-                            return (<Text key={index}>
+                            return (<CommonText key={index}>
                                 {info.text.map((info1,index1)=>{
                                     if(info1.text){
-                                        return <Text style={info1.color?{color:info1.color}:{}} key={index1}>{info1.text}</Text>;
+                                        return <CommonText style={info1.color?{color:info1.color}:{}} key={index1}>{info1.text}</CommonText>;
                                     }
                                     else if(info1.emoji){
                                         return <Image key={index1+'emoji'} style={{width:20,height:20}} source={emoji.get(info1.emoji)}/>
@@ -55,12 +56,12 @@ class Post extends Component{
                                             const { navigate } = this.props.navigation;
                                             navigate('OuterWeb',{uri:info1.url});
                                         }}>
-                                            <Text style={{color:"blue"}}>{info1.url}</Text>
+                                            <CommonText style={{color:"blue"}}>{info1.url}</CommonText>
                                         </TouchableOpacity>
                                         );
                                     }
                                 })}
-                            </Text>);
+                            </CommonText>);
                         }
                         else{
                             return <FixedImage
@@ -98,12 +99,12 @@ class Post extends Component{
                                         renderItem={this.renderRow.bind(this,index)}
                                         ListHeaderComponent={()=><View>
                                                 <View style={{height:24,paddingLeft:10,paddingRight:10,backgroundColor:"blue",alignSelf:"flex-start"}}>
-                                                    <Text style={{fontSize:18,lineHeight:24,color:"white"}}>
+                                                    <CommonText style={{fontSize:18,lineHeight:24,color:"white"}}>
                                                     {this.props.data.board}
-                                                    </Text>
+                                                    </CommonText>
                                                 </View>
                                                 <View style={{marginTop:20,marginBottom:20}}>
-                                                    <Text style={{fontSize:20,fontWeight:"bold"}}>{this.props.data.title}</Text>
+                                                    <CommonText style={{fontSize:20,fontWeight:"bold"}}>{this.props.data.title}</CommonText>
                                                 </View>
                                                 <View style={{height:2,backgroundColor:'#e5e5e5'}}/>
                                             </View>}
@@ -117,9 +118,9 @@ class Post extends Component{
                     </View>
                 </ScrollView>
                 :this.props.loading?null:<View>
-                    <Text>
+                    <CommonText>
                         帖子不见了
-                    </Text>
+                    </CommonText>
                 </View>
             }
             </View>

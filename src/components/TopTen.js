@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import {View,Text,ScrollView,TouchableOpacity,FlatList} from 'react-native';
 
+import CommonText from './common/CommonText';
+
 import {connect} from 'react-redux';
 import {loadTopTenAction} from '../actions/TopTen';
 
@@ -30,15 +32,15 @@ class TopTen extends Component{
                     <TouchableOpacity onPress={this.toPost.bind(this,item)}>
                         <View style={{flexDirection:"row",justifyContent:"space-between"}}>
                             <View style={{flex:1,height:50,justifyContent:"center"}}>
-                                <Text style={{fontWeight:"bold",fontSize:16}}>{item.item.title}</Text>
+                                <CommonText style={{fontWeight:"bold",fontSize:18}}>{item.item.title}</CommonText>
                             </View>
                             <View style={{width:70,justifyContent:"center"}}>  
-                                <Text style={{fontSize:14,textAlign:"right"}}>人气：{item.item.count}</Text>
+                                <CommonText style={{fontSize:16,textAlign:"right"}}>人气：{item.item.count}</CommonText>
                             </View>
                         </View>
                         <View style={{flexDirection:"row",justifyContent:"space-between"}}> 
-                            <Text numberOfLines={2} style={{fontSize:14,textAlign:"left"}}>{item.item.author}</Text>  
-                            <Text style={{fontSize:14}}>版面：{item.item.board}</Text>
+                            <CommonText numberOfLines={2} style={{fontSize:16,textAlign:"left"}}>{item.item.author}</CommonText>  
+                            <CommonText style={{fontSize:16}}>版面：{item.item.board}</CommonText>
                         </View>
                     </TouchableOpacity>
                 </View>

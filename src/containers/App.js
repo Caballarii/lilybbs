@@ -97,18 +97,29 @@ Home.navigationOptions = ({ navigation }) => {
   return {
     headerTitle,
     headerStyle: {
-      backgroundColor: 'rgb(41,139,217)',
+      backgroundColor: 'rgb(41,139,217)'
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
       fontWeight: 'bold',
+      fontSize:20
     },
+    headerTitleAllowFontScaling:false
   };
 };
 
 Post.navigationOptions=({navigation})=>{
   return {
-    headerTitle:'浏览帖子'
+    headerTitle:'浏览帖子',
+    headerStyle: {
+      backgroundColor: 'rgb(41,139,217)'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize:20
+    },
+    headerTitleAllowFontScaling:false
   };
 }
 
@@ -124,13 +135,31 @@ class OuterWeb extends Component{
 
 BoardList.navigationOptions=({navigation})=>{
   return {
-    headerTitle:'版面列表'
+    headerTitle:'版面列表',
+    headerStyle: {
+      backgroundColor: 'rgb(41,139,217)'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize:20
+    },
+    headerTitleAllowFontScaling:false
   }
 }
 
 Board.navigationOptions=({navigation})=>{
   return {
-    headerTitle:navigation.state.params.boardName
+    headerTitle:navigation.state.params.boardName,
+    headerStyle: {
+      backgroundColor: 'rgb(41,139,217)'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize:20
+    },
+    headerTitleAllowFontScaling:false
   }
 }
 
