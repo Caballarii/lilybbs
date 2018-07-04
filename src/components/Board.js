@@ -1,5 +1,8 @@
 import React,{Component} from 'react';
 import {View,Text,FlatList,TouchableOpacity,ActivityIndicator} from 'react-native';
+
+import CommonText from './common/CommonText';
+
 import {connect} from 'react-redux';
 
 import {loadBoardAction,loadBoardMoreAction} from '../actions/Board';
@@ -40,13 +43,13 @@ class Board extends Component{
                     <TouchableOpacity onPress={this.toPost.bind(this,item)}>
                         <View style={{flexDirection:"row",justifyContent:"space-between"}}>
                             <View style={{flex:1,height:50,justifyContent:"center"}}>
-                                <Text style={{fontWeight:"bold",fontSize:16}}>{item.item.title}</Text>
+                                <CommonText style={{fontWeight:"bold",fontSize:18}}>{item.item.title}</CommonText>
                             </View>              
                         </View>
                         <View style={{flexDirection:"row",justifyContent:"space-between"}}> 
-                            <Text numberOfLines={2} style={{fontSize:14,textAlign:"left"}}>{item.item.author}</Text>  
-                            <Text style={{fontSize:14}}>{item.item.time}</Text>  
-                            <Text style={{fontSize:14,textAlign:"right"}}>人气：{item.item.popular}</Text>
+                            <CommonText numberOfLines={2} style={{fontSize:16,textAlign:"left"}}>{item.item.author}</CommonText>  
+                            <CommonText style={{fontSize:16}}>{item.item.time}</CommonText>  
+                            <CommonText style={{fontSize:16,textAlign:"right"}}>人气：{item.item.popular}</CommonText>
                         </View>
                     </TouchableOpacity>
                 </View>

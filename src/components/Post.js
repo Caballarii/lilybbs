@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,FlatList,Image,TouchableOpacity,ScrollView,Dimensions} from 'react-native';
+import {View,FlatList,Image,TouchableOpacity,ScrollView,Dimensions} from 'react-native';
 import {Divider} from 'react-native-elements';
 import FixedImage from './common/FixedImage';
 import CommonText from './common/CommonText';

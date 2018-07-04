@@ -10,6 +10,7 @@ import Settings from '../components/Settings';
 import Post from '../components/Post';
 import BoardList from '../components/BoardList';
 import Board from '../components/Board';
+import HotSpot from '../components/HotSpot';
 
 const Home = createBottomTabNavigator(
     {
@@ -163,12 +164,28 @@ Board.navigationOptions=({navigation})=>{
   }
 }
 
+HotSpot.navigationOptions=({navigation})=>{
+  return {
+    headerTitle:'各区热点',
+    headerStyle: {
+      backgroundColor: 'rgb(41,139,217)'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize:20
+    },
+    headerTitleAllowFontScaling:false
+  }
+}
+
 const App=createStackNavigator({
     Home,
     Post,
     OuterWeb,
     BoardList,
-    Board
+    Board,
+    HotSpot
 });
 
 

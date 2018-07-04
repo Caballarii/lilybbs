@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,ScrollView,TouchableOpacity} from 'react-native';
+import {View,ScrollView,TouchableOpacity} from 'react-native';
 
 import {SearchBar} from 'react-native-elements';
 

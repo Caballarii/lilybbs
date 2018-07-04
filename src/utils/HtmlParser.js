@@ -320,6 +320,55 @@ export let parseBoard = (html) => {
     return result;
 }
 
+export let parseHotSpot = (html) => {
+    let $ = Cheerio.load(html);
+    let result = [];
+    let flag=0;
+    $("tr").each(function(i,e){
+        let item = $(this);
+        if(item.children("td[colspan='2']").length!=0){
+            result.push({
+                key:flag,
+                data:[]
+            })
+            flag++;
+        }
+        else{
+            item.children("td").each(function(i1,e1){
+                let pItem=$(this);
+                if(pItem.find("a").length==0){
+                    return;
+                }
+                let node={};
+                node.title=trim(pItem.find("a").eq(0).text());
+                node.url=pItem.find("a").eq(0).attr("href");
+                node.board=trim(pItem.find("a").eq(1).text());
+                result[flag-1].data.push(node);
+            })
+        }
+    });
+    
+    result=result.map(info=>{
+        switch(info.key){
+            case 0:info.key='本站系统';return info;
+            case 1:info.key='南京大学';return info;
+            case 2:info.key='乡情校谊';return info;
+            case 3:info.key='电脑技术';return info;
+            case 4:info.key='学术科学';return info;
+            case 5:info.key='文化艺术';return info;
+            case 6:info.key='体育娱乐';return info;
+            case 7:info.key='感性休闲';return info;
+            case 8:info.key='新闻信息';return info;
+            case 9:info.key='百合广角';return info;
+            case 10:info.key='校务信箱';return info;
+            case 11:info.key='社团群体';return info;
+            default: return info;
+        }
+    });
+
+    return result;
+}
+
 let trim = (x) => {
     return x.replace(/^\s+|\s+$/g, '');
 }

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,ScrollView,TouchableOpacity,FlatList} from 'react-native';
+import {View,TouchableOpacity,FlatList} from 'react-native';
 
 import CommonText from './common/CommonText';
 
