@@ -8,6 +8,7 @@ import {loadPostAction,loadMorePostAction} from '../actions/Post';
 import {connect} from 'react-redux';
 
 import emoji from '../utils/Emoji';
+import { hidden } from 'ansi-colors';
 
 let tabWidth = Dimensions.get('window').width;
 
@@ -29,11 +30,10 @@ class Post extends Component{
     }
 
     renderRow=(pageIndex,item)=>{
-        const { navigate } = this.props.navigation;
         return (
             <View style={{marginTop:10,marginBottom:10}}>
                 <View style={{flexDirection:"row",justifyContent:"space-between",marginBottom:10}}>
-                    <CommonText style={{fontWeight:"bold"}}>{item.item.author}</CommonText>
+                    <CommonText style={{fontWeight:"bold"}} numberOfLines={2}>{item.item.author}</CommonText>
                     <CommonText style={{fontWeight:"bold"}}>{item.index+pageIndex*30+(pageIndex!=0)}</CommonText>
                 </View>
                 <View style={{marginBottom:16}}>
@@ -76,7 +76,6 @@ class Post extends Component{
     }
 
     render(){
-        const { params } = this.props.navigation.state;
         return (
             
             <View style={{flex:1}}>

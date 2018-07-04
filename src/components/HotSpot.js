@@ -45,7 +45,7 @@ class HotSpot extends Component{
                                             <View key={index1} style={{height:85,backgroundColor:"white"}}>
                                                 <View style={{flexDirection:"row",flex:1}}>
                                                     <View style={{width:5,paddingTop:5,paddingBottom:5}}>
-                                                        <View style={{backgroundColor:(info.isRead?"transparent":"blue"),flex:1}}>
+                                                        <View style={{backgroundColor:(info1.isRead?"transparent":"blue"),flex:1}}>
                                                         </View>    
                                                     </View>
                                                     <View style={{paddingLeft:10,paddingRight:10,paddingTop:15,paddingBottom:10,flex:1}}>
@@ -72,13 +72,13 @@ class HotSpot extends Component{
                         <CommonText style={{fontSize:20}}>{''}</CommonText>
                     </View>                   
                 </ScrollView>
-                <View style={{position:"absolute",right:0,top:50}}>
+                <View style={{position:"absolute",right:0,top:60}}>
                     {
                         this.props.data.map((info,index)=>{
                             return (
                             <TouchableOpacity key={index} onPress={this.jumpToList.bind(this,index)}>
-                                <View style={{paddingLeft:5,paddingRight:5,height:18}}>
-                                    <CommonText style={{fontSize:16,textAlign:"center"}}>{info.key}</CommonText>
+                                <View style={{paddingLeft:5,paddingRight:5,height:28,justifyContent:"center"}}>
+                                    <CommonText style={{fontSize:16,textAlign:"center"}}>{info.key.substring(0,1)}</CommonText>
                                 </View>
                             </TouchableOpacity>
                             );
