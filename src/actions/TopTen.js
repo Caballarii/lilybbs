@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import {FetchUtil} from '../utils/FetchUtil';
+import {FetchGet} from '../utils/FetchUtil';
 import {parseTopTen} from '../utils/HtmlParser';
 
 export let loadTopTenAction=()=>{
@@ -7,7 +7,7 @@ export let loadTopTenAction=()=>{
         dispatch({
             type:types.TOPTEN_LOADING
         });
-        let result=await FetchUtil('bbstop10');
+        let result=await FetchGet('bbstop10');
 
         let data=parseTopTen(result);
         let storage=global.storage;

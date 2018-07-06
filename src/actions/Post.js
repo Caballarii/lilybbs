@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import {FetchUtil} from '../utils/FetchUtil';
+import {FetchGet} from '../utils/FetchUtil';
 import {parsePost} from '../utils/HtmlParser';
 
 export let loadPostAction=(url)=>{
@@ -7,7 +7,7 @@ export let loadPostAction=(url)=>{
         dispatch({
             type:types.POST_LOADING
         });
-        let result=await FetchUtil(url);
+        let result=await FetchGet(url);
 
         let data=parsePost(result);
         let storage=global.storage;

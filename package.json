@@ -23,6 +23,7 @@
     "cheerio-without-node-native": "^0.20.2",
     "expo": "^27.0.1",
     "native-base": "^2.5.2",
+    "qs": "^6.5.2",
     "react": "16.3.1",
     "react-native": "~0.55.2",
     "react-native-elements": "^0.19.1",

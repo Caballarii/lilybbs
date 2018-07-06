@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import {FetchUtil} from '../utils/FetchUtil';
+import {FetchGet} from '../utils/FetchUtil';
 import {parseBoard} from '../utils/HtmlParser';
 
 export let loadBoardAction=(url,boardName)=>{
@@ -8,7 +8,7 @@ export let loadBoardAction=(url,boardName)=>{
             type:types.BOARD_LOADING,
             boardName:boardName
         });
-        let result=await FetchUtil(url);
+        let result=await FetchGet(url);
 
         let data=parseBoard(result);
         let storage=global.storage;

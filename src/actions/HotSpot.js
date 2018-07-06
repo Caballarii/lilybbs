@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import {FetchUtil} from '../utils/FetchUtil';
+import {FetchGet} from '../utils/FetchUtil';
 import {parseHotSpot} from '../utils/HtmlParser';
 
 export let loadHotSpotAction=()=>{
@@ -7,7 +7,7 @@ export let loadHotSpotAction=()=>{
         dispatch({
             type:types.HOTSPOT_LOADING
         });
-        let result=await FetchUtil('bbstopall');
+        let result=await FetchGet('bbstopall');
 
         let data=parseHotSpot(result);
         let storage=global.storage;
