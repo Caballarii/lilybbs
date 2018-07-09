@@ -8,7 +8,7 @@ export let loadTopTenAction=()=>{
             type:types.TOPTEN_LOADING
         });
         let result=await FetchGet('bbstop10');
-
+        
         let data=parseTopTen(result);
         let storage=global.storage;
         data=await Promise.all(data.map(async info=>{

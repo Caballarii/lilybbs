@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {View,Text,WebView} from 'react-native';
+import {WebView} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {createBottomTabNavigator,createStackNavigator} from 'react-navigation';
 
@@ -11,6 +11,7 @@ import Post from '../components/Post';
 import BoardList from '../components/BoardList';
 import Board from '../components/Board';
 import HotSpot from '../components/HotSpot';
+import Login from '../components/Login';
 
 const Home = createBottomTabNavigator(
     {
@@ -179,13 +180,29 @@ HotSpot.navigationOptions=({navigation})=>{
   }
 }
 
+Login.navigationOptions=({navigation})=>{
+  return {
+    headerTitle:'添加账号',
+    headerStyle: {
+      backgroundColor: 'rgb(41,139,217)'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize:20
+    },
+    headerTitleAllowFontScaling:false
+  }
+}
+
 const App=createStackNavigator({
     Home,
     Post,
     OuterWeb,
     BoardList,
     Board,
-    HotSpot
+    HotSpot,
+    Login
 });
 
 

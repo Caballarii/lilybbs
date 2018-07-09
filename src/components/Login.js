@@ -2,11 +2,9 @@ import React,{Component} from 'react';
 import {View,TextInput,Alert} from 'react-native';
 
 import {Button} from 'react-native-elements';
-import CookieManager from 'react-native-cookies';
-
 import {FetchGet,FetchPost} from '../utils/FetchUtil';
 
-class Personal extends Component{
+class Login extends Component{
 
     state={
         id:'',
@@ -40,11 +38,25 @@ class Personal extends Component{
 
     render(){
         return (
-            <View>
-                                
+            <View >
+                <TextInput
+                    allowFontScaling={false}
+                    style={{marginTop:20,paddingLeft:10,height:40,fontSize:20,backgroundColor:"white"}}
+                    placeholder='用户名'
+                    onChangeText={this.handleChange.bind(this,'id')}
+                />
+                <TextInput
+                    allowFontScaling={false}
+                    style={{marginTop:20,paddingLeft:10,height:40,fontSize:20,backgroundColor:"white"}}
+                    placeholder='密码'
+                    secureTextEntry={true}
+                    onChangeText={this.handleChange.bind(this,'pw')}
+                />
+                <Button onPress={this.toLogin} title="登录" style={{marginTop:20}}></Button>
+                <Button onPress={this.toUserInfo} title="个人信息" style={{marginTop:20}}></Button>
             </View>
         );
     }
 }
 
-export default Personal;
+export default Login;
