@@ -26,6 +26,7 @@
     "qs": "^6.5.2",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz",
+    "react-native-cookies": "^3.3.0",
     "react-native-elements": "^0.19.1",
     "react-native-storage": "^0.2.2",
     "react-navigation": "^2.0.4",

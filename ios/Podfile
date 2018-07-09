@@ -44,6 +44,8 @@ target 'lilybbs' do
   pod 'glog',
     :podspec => "../node_modules/react-native/third-party-podspecs/glog.podspec",
     :inhibit_warnings => true
+  pod 'react-native-cookies',
+    :path => '../node_modules/react-native-cookies/ios'
 
 
   post_install do |installer|
