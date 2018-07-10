@@ -2,7 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Root from './src/Root';
 
+import {initStorage} from './src/utils/Storage';
+
 export default class App extends React.Component {
+
+  componentDidMount(){
+    initStorage();
+  }
+  
   render() {
     return (
       <Root />
@@ -18,18 +25,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-import Storage from 'react-native-storage';
-import {AsyncStorage} from 'react-native';
-
-var storage = new Storage({
-  size:1000,
-  storageBackend: AsyncStorage,
-  defaultExpires:1000*3600*24,
-  enableCache:true
-});
-
-global.storage=storage;
 
 // import {FetchUtil} from './src/utils/FetchUtil';
 // import Cheerio from "cheerio-without-node-native";

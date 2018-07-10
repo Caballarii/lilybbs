@@ -1,6 +1,7 @@
 import * as types from '../constants/ActionTypes';
 import {FetchGet} from '../utils/FetchUtil';
 import {parsePost} from '../utils/HtmlParser';
+import {storePost} from '../utils/Storage';
 
 export let loadPostAction=(url)=>{
     return async dispatch=>{
@@ -10,13 +11,15 @@ export let loadPostAction=(url)=>{
         let result=await FetchGet(url);
 
         let data=parsePost(result);
-        let storage=global.storage;
+        // let storage=global.storage;
 
-        storage.save({
-            key:'post',
-            id:url.replace('_','-'),
-            data:data
-        })
+        // storage.save({
+        //     key:'post',
+        //     id:url.replace('_','-'),
+        //     data:data
+        // })
+        storePost(url,data);
+
         dispatch({
             type:types.POST_LOADED,
             data:data
