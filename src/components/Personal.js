@@ -1,50 +1,45 @@
 import React,{Component} from 'react';
-import {View,TextInput,Alert} from 'react-native';
-
+import {View,TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-elements';
-import CookieManager from 'react-native-cookies';
 
-import {FetchGet,FetchPost} from '../utils/FetchUtil';
+import CommonText from './common/CommonText';
+
+import {connect} from 'react-redux';
+import {getDefaultUser} from '../actions/Personal';
+
+import {getAllCookie} from '../utils/Cookie';
 
 class Personal extends Component{
 
-    state={
-        id:'',
-        pw:''
+    componentDidMount=async ()=>{
+        this.props.dispatch(getDefaultUser());
     }
 
-    handleChange=(name,value)=>{
-        this.state[name]=value;
-        this.setState({
-        });
+    toLogin=()=>{
+        const { navigate } = this.props.navigation;
+        navigate('Login');
     }
 
-    toLogin=async ()=>{
-        let userKey="vd" + parseInt(Math.random() * 100000);
-        let action=userKey + "/bbslogin?type=2";        
-        let result=await FetchPost(action,this.state);
-        if(result.indexOf('密码错误!')!=-1){
-            Alert.alert('用户名或密码错误');
-        }else if(result.indexOf('IP密码')!=-1){
-            Alert.alert('操作过于频繁，请稍后再试');
-        }else{
-            Alert.alert('登录成功');
-            let cookieStr=result.match(/Net\.BBS\.setCookie\(\'([^\)]+)\'\)/)[1];            
-        }
-    }
-
-    toUserInfo=async ()=>{
-        let aaa=await FetchGet("vd86558"+'/bbsinfo');
-        console.log(aaa);
-    }
-
-    render(){
+    render(){        
         return (
             <View>
-                                
+                <View style={{height:50,backgroundColor:"white",paddingLeft:10,paddingRight:10,marginTop:40,flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
+                    <CommonText style={{fontSize:20}}>默认账号：{this.props.defaultUser}</CommonText>
+                    <TouchableOpacity onPress={this.toLogin}>
+                        <CommonText style={{color:"red"}}>切换账号</CommonText>
+                    </TouchableOpacity>
+                </View>
+                <CommonText></CommonText>             
             </View>
         );
     }
 }
 
-export default Personal;
+let select=(store)=>{
+    return {
+        loading:store.personalStore.loading,
+        defaultUser:store.personalStore.defaultUser
+    };
+}
+
+export default connect(select)(Personal);

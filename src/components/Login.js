@@ -4,6 +4,8 @@ import {View,TextInput,Alert} from 'react-native';
 import {Button} from 'react-native-elements';
 import {FetchGet,FetchPost} from '../utils/FetchUtil';
 
+import {storeUser,loadUserList,storeDefaultUser,loadDefaultUser} from '../utils/Storage';
+
 class Login extends Component{
 
     state={
@@ -27,13 +29,18 @@ class Login extends Component{
             Alert.alert('操作过于频繁，请稍后再试');
         }else{
             Alert.alert('登录成功');
-            let cookieStr=result.match(/Net\.BBS\.setCookie\(\'([^\)]+)\'\)/)[1];            
+            let cookieStr=result.match(/Net\.BBS\.setCookie\(\'([^\)]+)\'\)/)[1];
+            
+            storeUser(this.state.id,this.state.pw,cookieStr,userKey);
+            storeDefaultUser(this.state.id);
         }
     }
 
     toUserInfo=async ()=>{
-        let aaa=await FetchGet("vd86558"+'/bbsinfo');
-        console.log(aaa);
+        let users=await loadUserList();
+        console.log(users);
+        let defaultUser=await loadDefaultUser();
+        console.log(defaultUser);
     }
 
     render(){

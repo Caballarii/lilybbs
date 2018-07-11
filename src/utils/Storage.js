@@ -51,3 +51,20 @@ export let storeUser=(id,pw,cookieStr,userKey)=>{
         }
     })
 }
+
+export let loadUserList=async ()=>{
+    let users=await storage.getIdsForKey('user');
+    return users;
+}
+
+export let storeDefaultUser=(id)=>{
+    storage.save({
+        key:'defaultUser',
+        data:id
+    });
+}
+
+export let loadDefaultUser=async ()=>{
+    let defaultUser=await storage.load({key:'defaultUser'});
+    return defaultUser;
+}
