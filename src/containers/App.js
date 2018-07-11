@@ -12,6 +12,7 @@ import BoardList from '../components/BoardList';
 import Board from '../components/Board';
 import HotSpot from '../components/HotSpot';
 import Login from '../components/Login';
+import UserInfo from '../components/UserInfo';
 
 const Home = createBottomTabNavigator(
     {
@@ -195,6 +196,21 @@ Login.navigationOptions=({navigation})=>{
   }
 }
 
+UserInfo.navigationOptions=({navigation})=>{
+  return {
+    headerTitle:'个人资料',
+    headerStyle: {
+      backgroundColor: 'rgb(41,139,217)'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize:20
+    },
+    headerTitleAllowFontScaling:false
+  }
+}
+
 const App=createStackNavigator({
     Home,
     Post,
@@ -202,7 +218,8 @@ const App=createStackNavigator({
     BoardList,
     Board,
     HotSpot,
-    Login
+    Login,
+    UserInfo
 });
 
 

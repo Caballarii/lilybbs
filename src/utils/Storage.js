@@ -57,6 +57,14 @@ export let loadUserList=async ()=>{
     return users;
 }
 
+export let loadUser=async (id)=>{
+    let user=await storage.load({
+        key:'user',
+        id:id
+    });
+    return user;
+}
+
 export let storeDefaultUser=(id)=>{
     storage.save({
         key:'defaultUser',

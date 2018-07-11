@@ -15,9 +15,9 @@ class Personal extends Component{
         this.props.dispatch(getDefaultUser());
     }
 
-    toLogin=()=>{
+    toNavigate=(url)=>{
         const { navigate } = this.props.navigation;
-        navigate('Login');
+        navigate(url);
     }
 
     render(){        
@@ -25,11 +25,15 @@ class Personal extends Component{
             <View>
                 <View style={{height:50,backgroundColor:"white",paddingLeft:10,paddingRight:10,marginTop:40,flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
                     <CommonText style={{fontSize:20}}>默认账号：{this.props.defaultUser}</CommonText>
-                    <TouchableOpacity onPress={this.toLogin}>
+                    <TouchableOpacity onPress={this.toNavigate.bind(this,'Login')}>
                         <CommonText style={{color:"red"}}>切换账号</CommonText>
                     </TouchableOpacity>
                 </View>
-                <CommonText></CommonText>             
+                <TouchableOpacity onPress={this.toNavigate.bind(this,'UserInfo')}>
+                    <View style={{height:50,backgroundColor:"white",paddingLeft:10,paddingRight:10,marginTop:40,flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
+                        <CommonText style={{fontSize:20}}>个人资料</CommonText>                                       
+                    </View>
+                </TouchableOpacity>            
             </View>
         );
     }

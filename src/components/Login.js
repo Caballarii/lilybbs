@@ -5,6 +5,7 @@ import {Button} from 'react-native-elements';
 import {FetchGet,FetchPost} from '../utils/FetchUtil';
 
 import {storeUser,loadUserList,storeDefaultUser,loadDefaultUser} from '../utils/Storage';
+import { storeCookie } from '../utils/Cookie';
 
 class Login extends Component{
 
@@ -28,19 +29,15 @@ class Login extends Component{
         }else if(result.indexOf('IP密码')!=-1){
             Alert.alert('操作过于频繁，请稍后再试');
         }else{
-            Alert.alert('登录成功');
+            Alert.alert('添加账号成功');
             let cookieStr=result.match(/Net\.BBS\.setCookie\(\'([^\)]+)\'\)/)[1];
             
             storeUser(this.state.id,this.state.pw,cookieStr,userKey);
             storeDefaultUser(this.state.id);
+            storeCookie(cookieStr,userKey);
+            
+            this.props.navigation.goBack();
         }
-    }
-
-    toUserInfo=async ()=>{
-        let users=await loadUserList();
-        console.log(users);
-        let defaultUser=await loadDefaultUser();
-        console.log(defaultUser);
     }
 
     render(){
@@ -59,8 +56,7 @@ class Login extends Component{
                     secureTextEntry={true}
                     onChangeText={this.handleChange.bind(this,'pw')}
                 />
-                <Button onPress={this.toLogin} title="登录" style={{marginTop:20}}></Button>
-                <Button onPress={this.toUserInfo} title="个人信息" style={{marginTop:20}}></Button>
+                <Button onPress={this.toLogin} title="添加账号" style={{marginTop:20}}></Button>
             </View>
         );
     }
