@@ -57,7 +57,7 @@ export let parsePost = (html) => {
         //console.log(text);
 
         let mixedText = dividePicAndText(text);
-
+        console.log(mixedText);
         //node.text=parseText(text);
         node.text = mixedText;
         //node.body=trim(item.text());

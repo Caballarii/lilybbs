@@ -45,6 +45,7 @@ class Post extends Component{
                             return (<CommonText key={index}>
                                 {info.text.map((info1,index1)=>{
                                     if(info1.text){
+                                        console.log(info1.text);
                                         return <CommonText style={info1.color?{color:info1.color}:{}} key={index1}>{info1.text}</CommonText>;
                                     }
                                     else if(info1.emoji){
