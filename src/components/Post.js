@@ -62,6 +62,7 @@ class Post extends Component{
                                         );
                                     }
                                 })}
+                                
                             </CommonText>);
                         }
                         else{
