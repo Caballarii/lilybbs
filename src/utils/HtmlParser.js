@@ -57,7 +57,6 @@ export let parsePost = (html) => {
         //console.log(text);
 
         let mixedText = dividePicAndText(text);
-        console.log(mixedText);
         //node.text=parseText(text);
         node.text = mixedText;
         //node.body=trim(item.text());
@@ -73,9 +72,23 @@ let dividePicAndText = (text) => {
     let result = [];
     let picIndex = text.search(picReg);
     if (picIndex == -1) {
-        return [{
-            "text": parseText(text)
-        }];
+        let teArr=text.split('\n');
+        if(teArr.length<200){
+            return [{
+                "text": parseText(text)
+            }];
+        }
+        else{
+            let length=teArr.length;
+            let count=length/100+(length%100!=0);
+            let res=[];
+            for(let i=0;i<count;i++){
+                res.push({
+                    "text":parseText(teArr.slice(100*i,100*i+100).join('\n')+(i+1==count?'':'\n'))
+                });
+            }
+            return res;
+        }       
     } else {
         let pic = picReg.exec(text)[0];
         let resultArr = [];
@@ -110,7 +123,7 @@ let parseText = (text) => {
     if (urlIndex == -1 && colorIndex == -1 && emojiIndex == -1) {
         return [{
             "text": text
-        }];
+        }];       
     } else if (colorIndex != -1 && (urlIndex == -1 || urlIndex > colorIndex) && (emojiIndex == -1 || emojiIndex > colorIndex)) {
         let color = colorReg.exec(text)[0];
         let resultArr = [];

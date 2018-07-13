@@ -39,7 +39,7 @@ export let loadBoardMoreAction=(url,startIndex)=>{
         dispatch({
             type:types.BOARD_MORE_LOADING
         });
-        let result=await FetchUtil(url);
+        let result=await FetchGet(url);
 
         let data=parseBoard(result);
         let storage=global.storage;
