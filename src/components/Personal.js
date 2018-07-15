@@ -17,7 +17,11 @@ class Personal extends Component{
 
     toNavigate=(url)=>{
         const { navigate } = this.props.navigation;
-        navigate(url);
+        navigate(url,{onGoBack:()=>this.toGoBackRefresh()});
+    }
+
+    toGoBackRefresh=()=>{
+        this.props.dispatch(getDefaultUser());
     }
 
     render(){        

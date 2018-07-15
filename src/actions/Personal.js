@@ -7,11 +7,15 @@ export let getDefaultUser=()=>{
         dispatch({
             type:types.PERSONAL_DEFAULT_USER_LOADING
         });
-        let defaultUser=await loadDefaultUser();
-        dispatch({
-            type:types.PERSONAL_DEFAULT_USER_LOADED,
-            defaultUser:defaultUser
-        });       
+        try{
+            let defaultUser=await loadDefaultUser();
+            dispatch({
+                type:types.PERSONAL_DEFAULT_USER_LOADED,
+                defaultUser:defaultUser
+            });
+        }catch(e){
+        }
+              
     }
 }
 

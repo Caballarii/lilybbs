@@ -35,7 +35,7 @@ class Login extends Component{
             storeUser(this.state.id,this.state.pw,cookieStr,userKey);
             storeDefaultUser(this.state.id);
             storeCookie(cookieStr,userKey);
-            
+            this.props.navigation.state.params.onGoBack();
             this.props.navigation.goBack();
         }
     }
