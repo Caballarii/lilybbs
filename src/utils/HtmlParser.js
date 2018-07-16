@@ -384,8 +384,18 @@ export let parseHotSpot = (html) => {
 
 export let parseUserInfo = (html) => {
     let $ = Cheerio.load(html);
-    let result = [];
+    let result = {};
     
+    result.id=trim($("tr").eq(0).find("td").eq(1).text());
+    result.nick=trim($("tr").eq(1).find("input").value);
+    result.total=trim($("tr").eq(2).find("td").eq(1).text());
+    result.today=trim($("tr").eq(3).find("td").eq(1).text());
+    result.mail=trim($("tr").eq(4).find("td").eq(1).text());
+    result.loginCount=trim($("tr").eq(5).find("td").eq(1).text());
+    result.loginTime=trim($("tr").eq(6).find("td").eq(1).text());
+    result.address=trim($("tr").eq(7).find("input").value);
+    result.createTime=trim($("tr").eq(8).find("td").eq(1).text());
+    console.log(result);
 }
 
 let trim = (x) => {

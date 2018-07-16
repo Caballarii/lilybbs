@@ -2,6 +2,8 @@ import * as types from '../constants/ActionTypes';
 import {loadDefaultUser,loadUser} from '../utils/Storage';
 import {FetchGet} from '../utils/FetchUtil';
 
+import {parseUserInfo} from '../utils/HtmlParser';
+
 export let getDefaultUser=()=>{
     return async dispatch=>{
         dispatch({
@@ -29,5 +31,6 @@ export let getUserInfo=()=>{
         
         let result=await FetchGet(user.userKey+'/bbsinfo');
         console.log(result);
+        let data=parseUserInfo(result);
     }
 }
