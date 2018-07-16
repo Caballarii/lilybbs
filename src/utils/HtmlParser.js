@@ -382,6 +382,12 @@ export let parseHotSpot = (html) => {
     return result;
 }
 
+export let parseUserInfo = (html) => {
+    let $ = Cheerio.load(html);
+    let result = [];
+    
+}
+
 let trim = (x) => {
     return x.replace(/^\s+|\s+$/g, '');
 }
