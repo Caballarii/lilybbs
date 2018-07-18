@@ -387,15 +387,22 @@ export let parseUserInfo = (html) => {
     let result = {};
     
     result.id=trim($("tr").eq(0).find("td").eq(1).text());
-    result.nick=trim($("tr").eq(1).find("input").value);
+    result.nick=trim($("tr").eq(1).find("input").val());
     result.total=trim($("tr").eq(2).find("td").eq(1).text());
     result.today=trim($("tr").eq(3).find("td").eq(1).text());
     result.mail=trim($("tr").eq(4).find("td").eq(1).text());
     result.loginCount=trim($("tr").eq(5).find("td").eq(1).text());
     result.loginTime=trim($("tr").eq(6).find("td").eq(1).text());
-    result.address=trim($("tr").eq(7).find("input").value);
+    result.address=trim($("tr").eq(7).find("input").val());
     result.createTime=trim($("tr").eq(8).find("td").eq(1).text());
-    console.log(result);
+    result.lastLoginTime=trim($("tr").eq(9).find("td").eq(1).text());
+    result.ip=trim($("tr").eq(10).find("td").eq(1).text());
+    result.email=trim($("tr").eq(11).find("input").val());
+    result.birthday=$("tr").eq(12).find("input").eq(0).val()+'-'
+                    +$("tr").eq(12).find("input").eq(1).val()+'-'
+                    +$("tr").eq(12).find("input").eq(2).val();
+    result.gender=$("tr").eq(13).find("input:checked").val();
+    result.exptype=$("tr").eq(14).find("input:checked").val();
 }
 
 let trim = (x) => {
