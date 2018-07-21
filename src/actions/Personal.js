@@ -32,5 +32,9 @@ export let getUserInfo=()=>{
         let result=await FetchGet(user.userKey+'/bbsinfo');
         console.log(result);
         let data=parseUserInfo(result);
+        dispatch({
+            type:types.PERSONAL_DEFAULT_USER_LOADED,
+            userInfo:data
+        });
     }
 }

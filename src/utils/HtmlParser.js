@@ -403,6 +403,8 @@ export let parseUserInfo = (html) => {
                     +$("tr").eq(12).find("input").eq(2).val();
     result.gender=$("tr").eq(13).find("input:checked").val();
     result.exptype=$("tr").eq(14).find("input:checked").val();
+
+    return result;
 }
 
 let trim = (x) => {

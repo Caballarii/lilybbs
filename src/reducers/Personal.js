@@ -2,7 +2,8 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
     loading:false,
-    defaultUser:''
+    defaultUser:'',
+    userInfo:{}
 }
 
 let personalReducer=(state=initialState,action)=>{
