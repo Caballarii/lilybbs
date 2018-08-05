@@ -9,7 +9,7 @@
 	<key>isSplashScreenDisabled</key>
 	<true/>
 	<key>manifestUrl</key>
-	<string>exp://exp.host/@caballarii/exp.host/@caballarii/lilybbs</string>
+	<string>exp://exp.host/@caballarii/lilybbs</string>
 	<key>releaseChannel</key>
 	<string>default</string>
 </dict>
