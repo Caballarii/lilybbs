@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {WebView} from 'react-native';
+import {WebView,View,TouchableOpacity} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {createBottomTabNavigator,createStackNavigator} from 'react-navigation';
 
@@ -13,6 +13,7 @@ import Board from '../components/Board';
 import HotSpot from '../components/HotSpot';
 import Login from '../components/Login';
 import UserInfo from '../components/UserInfo';
+import CreatePost from '../components/CreatePost';
 
 const Home = createBottomTabNavigator(
     {
@@ -122,6 +123,32 @@ Post.navigationOptions=({navigation})=>{
       fontWeight: 'bold',
       fontSize:20
     },
+    headerTitleAllowFontScaling:false,
+    headerRight:
+      (<TouchableOpacity onPress={()=>{navigation.navigate('CreatePost')}}><View style={{marginRight:9}}><Icon
+        name='edit'
+        size={20}
+        type="font-awesome"
+        color="white"
+      /></View></TouchableOpacity>),
+    headerRightContainerStyle:{
+      paddingRight:20,
+      fontSize:50
+    }
+  };
+}
+
+CreatePost.navigationOptions=({navigation})=>{
+  return {
+    headerTitle:'发帖',
+    headerStyle: {
+      backgroundColor: 'rgb(41,139,217)'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize:20
+    },
     headerTitleAllowFontScaling:false
   };
 }
@@ -219,7 +246,8 @@ const App=createStackNavigator({
     Board,
     HotSpot,
     Login,
-    UserInfo
+    UserInfo,
+    CreatePost
 });
 
 

@@ -5848,6 +5848,16 @@ react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
+react-native-autogrow-textinput@^5.1.1:
+  version "5.1.1"
+  resolved "http://registry.npm.taobao.org/react-native-autogrow-textinput/download/react-native-autogrow-textinput-5.1.1.tgz#e6c85077f2a7c3371f382ab3224808b88f385819"
+
+react-native-blur@^3.2.2:
+  version "3.2.2"
+  resolved "http://registry.npm.taobao.org/react-native-blur/download/react-native-blur-3.2.2.tgz#5bfb50638d148982c9560436554ed01d77d6d07d"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-branch@2.0.0-beta.3:
   version "2.0.0-beta.3"
   resolved "http://registry.npm.taobao.org/react-native-branch/download/react-native-branch-2.0.0-beta.3.tgz#2167af86bbc9f964bd45bd5f37684e5b54965e32"
@@ -5914,6 +5924,17 @@ react-native-keyboard-aware-scroll-view@0.5.0:
   dependencies:
     prop-types "^15.6.0"
     react-native-iphone-x-helper "^1.0.1"
+
+react-native-keyboard-input@^5.2.3:
+  version "5.2.3"
+  resolved "http://registry.npm.taobao.org/react-native-keyboard-input/download/react-native-keyboard-input-5.2.3.tgz#98a52c75cc536b50aaaf20547a93219c94b64cb6"
+  dependencies:
+    lodash "^4.17.4"
+    react-native-keyboard-tracking-view "^5.4.3"
+
+react-native-keyboard-tracking-view@^5.4.3:
+  version "5.4.4"
+  resolved "http://registry.npm.taobao.org/react-native-keyboard-tracking-view/download/react-native-keyboard-tracking-view-5.4.4.tgz#2ec99d232bf59a73493288ba8503b29057fa8a06"
 
 react-native-maps@0.21.0:
   version "0.21.0"

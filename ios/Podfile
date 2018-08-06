@@ -46,7 +46,13 @@ target 'lilybbs' do
     :inhibit_warnings => true
   pod 'react-native-cookies',
     :path => '../node_modules/react-native-cookies/ios'
+  pod 'react-native-keyboard-input',
+    :path => '../node_modules/react-native-keyboard-input'
+  pod 'react-native-keyboard-tracking-view',
+    :path => '../node_modules/react-native-keyboard-tracking-view'
 
+
+  pod 'react-native-blur', :path => '../node_modules/react-native-blur'
 
   post_install do |installer|
     installer.pods_project.main_group.tab_width = '2';
