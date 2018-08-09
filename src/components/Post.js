@@ -8,7 +8,6 @@ import {loadPostAction,loadMorePostAction} from '../actions/Post';
 import {connect} from 'react-redux';
 
 import emoji from '../utils/Emoji';
-import { hidden } from 'ansi-colors';
 
 let tabWidth = Dimensions.get('window').width;
 
