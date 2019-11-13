@@ -1,4 +1,4 @@
-## Data source(http://bbs.nju.edu.cn) been blocked by CERNET. This project is deprecated.
+## Data source(http://bbs.nju.edu.cn) has been blocked by CERNET. This project is deprecated.
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
