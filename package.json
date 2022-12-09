@@ -23,7 +23,7 @@
     "cheerio-without-node-native": "^0.20.2",
     "expo": "^27.0.1",
     "native-base": "^2.5.2",
-    "qs": "^6.5.2",
+    "qs": "^6.5.3",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz",
     "react-native-autogrow-textinput": "^5.1.1",
